@@ -1,0 +1,5 @@
+node_modules
+config.json
+tarot.csv
+.DS_store
+.env
