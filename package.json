@@ -4,9 +4,24 @@
   "description": "JSで作ったタロット占いができるdiscord botです。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "ARAN1218",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARAN1218/tarot-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ARAN1218/tarot-bot/issues"
+  },
+  "homepage": "https://github.com/ARAN1218/tarot-bot#readme",
+  "dependencies": {
+    "@discordjs/builders": "^1.7.0",
+    "@discordjs/rest": "^2.2.0",
+    "discord-api-types": "^0.37.66",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  }
 }

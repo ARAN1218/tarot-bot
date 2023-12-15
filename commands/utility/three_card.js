@@ -22,8 +22,8 @@ function ft_shuffle(min, max) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('three_oracle')
-        .setDescription('スリーオラクルのタロット占いを実行する')
+        .setName('three_card')
+        .setDescription('スリーカードのタロット占いを実行する')
         .addStringOption((option) =>
             option
                 .setName('question')
@@ -71,7 +71,7 @@ module.exports = {
             .setFile(`img/${TAROT[card[2]].イメージ}`)
 
         await interaction.reply({ content : `
-            [スリーオラクル]\n質問：${question}\n${user_name}の今日の運勢🔮は...\n[過去]${TAROT[card[0]].カード名}：${TAROT[card[0]].意味}\n[現在]${TAROT[card[1]].カード名}：${TAROT[card[1]].意味}\n[未来]${TAROT[card[2]].カード名}：${TAROT[card[2]].意味}
+            [スリーカード]\n質問：${question}\n${user_name}の今日の運勢🔮は...\n[過去]${TAROT[card[0]].カード名}：${TAROT[card[0]].意味}\n[現在]${TAROT[card[1]].カード名}：${TAROT[card[1]].意味}\n[未来]${TAROT[card[2]].カード名}：${TAROT[card[2]].意味}
         `, files: [image1, image2, image3] }
         );
     
