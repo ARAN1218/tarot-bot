@@ -7,7 +7,15 @@ const fastify = require('fastify')({
 
 fastify.get('/ping', function (request, reply) {
     reply.type('text/html').send(`
-        <p>ping</p>
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>Hello from Render!</title>
+            </head>
+            <body>
+                <p>ping</p>
+            </body>
+        </html>
     `);
 });
   
