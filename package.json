@@ -4,7 +4,7 @@
   "description": "JSで作ったタロット占いができるdiscord botです。",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "build": "npm install"
   },
   "keywords": [],
   "author": "ARAN1218",
