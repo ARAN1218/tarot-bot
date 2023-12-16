@@ -1,12 +1,12 @@
 // ライブラリ インポート
+const fs = require('node:fs');
+const path = require('node:path');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+require('dotenv').config();
 const port = process.env.PORT || 3000;
 const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
 const fastify = require('fastify')({
   logger: true
-});
-
-fastify.get('/ping', function (request) {
-    console.log(`Ping! Ping! Ping!`);
 });
   
 fastify.listen({host: host, port: port }, function (err, address) {
@@ -15,13 +15,6 @@ fastify.listen({host: host, port: port }, function (err, address) {
         process.exit(1);
     }
 })
-
-// import fastify from "fastify";
-// import { fastifyRawBody } from "fastify-raw-body";
-const fs = require('node:fs');
-const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-require('dotenv').config();
 
 // 接続情報
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -51,6 +44,22 @@ for (const folder of commandFolders) {
 // ログイン成功時のログ(一度きり)
 client.once(Events.ClientReady, readyClient => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
+
+// ヘルスチェック用のpingコマンド(サーバー落ち対策)
+fastify.get('/ping', function (request) {
+    // console.log(`Ping! Ping! Ping!`);
+    reply.type('text/html').send(`
+        <!DOCTYPE html>
+        <html lang="ja">
+            <head>
+                <title>Document</title>
+            </head>
+            <body>
+                <p>Ping! Ping! Ping!</p>
+            </body>
+        </html>
+    `);
 });
 
 // イベント(インタラクション)が呼ばれたとき
