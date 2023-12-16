@@ -1,4 +1,23 @@
 // ライブラリ インポート
+const port = process.env.PORT || 3000;
+const host = ("RENDER" in process.env) ? `0.0.0.0` : `localhost`;
+const fastify = require('fastify')({
+  logger: true
+});
+
+// fastify.get('/', function (request, reply) {
+//     reply.type('text/html').send(html);
+// });
+  
+fastify.listen({host: host, port: port }, function (err, address) {
+    if (err) {
+        fastify.log.error(err);
+        process.exit(1);
+    }
+})
+
+// import fastify from "fastify";
+// import { fastifyRawBody } from "fastify-raw-body";
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
