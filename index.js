@@ -5,9 +5,11 @@ const fastify = require('fastify')({
   logger: true
 });
 
-// fastify.get('/', function (request, reply) {
-//     reply.type('text/html').send(html);
-// });
+fastify.get('/ping', function (request, reply) {
+    reply.type('text/html').send(`
+        <p>ping</p>
+    `);
+});
   
 fastify.listen({host: host, port: port }, function (err, address) {
     if (err) {
