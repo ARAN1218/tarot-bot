@@ -6,7 +6,7 @@ const fastify = require('fastify')({
 });
 
 fastify.get('/ping', function (request) {
-    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+    console.log(`Ping! Ping! Ping!`);
 });
   
 fastify.listen({host: host, port: port }, function (err, address) {
