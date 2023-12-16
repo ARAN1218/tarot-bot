@@ -47,7 +47,7 @@ client.once(Events.ClientReady, readyClient => {
 });
 
 // ヘルスチェック用のpingコマンド(サーバー落ち対策)
-fastify.get('/ping', function (request) {
+fastify.get('/ping', function (request, reply) {
     // console.log(`Ping! Ping! Ping!`);
     reply.type('text/html').send(`
         <!DOCTYPE html>
