@@ -5,18 +5,8 @@ const fastify = require('fastify')({
   logger: true
 });
 
-fastify.get('/ping', function (request, reply) {
-    reply.type('text/html').send(`
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Hello from Render!</title>
-            </head>
-            <body>
-                <p>ping</p>
-            </body>
-        </html>
-    `);
+fastify.get('/ping', function (request) {
+    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
   
 fastify.listen({host: host, port: port }, function (err, address) {
