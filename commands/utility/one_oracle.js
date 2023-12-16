@@ -46,7 +46,7 @@ module.exports = {
         if (last_ft_date) {
             // 現在の日付を取得
             const current_date = new Date();
-            current_date.setHours(0, 0, 0, 0); // 時刻を0時0分0秒に設定
+            current_date.setHours(-19, 35, 0, 0); // 時刻を0時0分0秒に設定
     
             // 最後の占い日と現在の日付を比較
             if (last_ft_date.getTime() >= current_date.getTime()) {
