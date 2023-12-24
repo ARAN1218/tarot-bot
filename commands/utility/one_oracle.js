@@ -47,7 +47,7 @@ module.exports = {
         if (last_ft_date) {
             // 現在の日付を取得
             const current_date = new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }));
-            // current_date.setHours(0, 0, 0, 0); // 時刻を0時0分0秒に設定
+            current_date.setHours(0, 0, 0, 0); // 時刻を0時0分0秒に設定
     
             // 最後の占い日と現在の日付を比較
             if (last_ft_date.getDay() >= current_date.getDay()) {
@@ -69,6 +69,6 @@ module.exports = {
         );
     
         // ユーザーの最後の占い日を更新
-        USER_LAST_FT_DATE_LIST.set(user_id, new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })));
+        USER_LAST_FT_DATE_LIST.set(user_id, new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })).setHours(0, 0, 0, 0));
     },
 };
