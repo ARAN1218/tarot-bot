@@ -29,10 +29,6 @@ module.exports = {
                 .setName('question')
                 .setDescription('占いする事柄を事前に設定します')
                 .setRequired(false) //trueで必須、falseで任意
-                // .addChoices(
-                //     {name:'Japanese', value:'ja'},
-                //     {name:'English', value:'en'}
-                // )
         ),
 
     async execute(interaction) {
@@ -49,9 +45,9 @@ module.exports = {
             current_date.setHours(0, 0, 0, 0); // 時刻を0時0分0秒に設定
     
             // 最後の占い日と現在の日付を比較
-            if (last_ft_date.getTime() >= current_date.getTime()) {
-            await interaction.reply("同じ占いは1日に1回しか出来ません😌");
-            return;
+            if (last_ft_date.getDay() >= current_date.getDay()) {
+                await interaction.reply("同じ占いは1日に1回しか出来ません😌");
+                return;
             }
         }
     
