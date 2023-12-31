@@ -24,32 +24,31 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('two_oracle')
         .setDescription('ツーオラクルのタロット占いを実行する')
-        .addStringOption((option) =>
-            option
-                .setName('question')
-                .setDescription('占いする事柄を事前に設定します')
-                .setRequired(false) //trueで必須、falseで任意
+        .addStringOption((option) => option
+            .setName('question')
+            .setDescription('占いする事柄を事前に設定します')
+            .setRequired(false) //trueで必須、falseで任意
         ),
 
     async execute(interaction) {
-        const user_id = interaction.user.id;
+        // const user_id = interaction.user.id;
         const user_name = interaction.member.displayName;
-        const question = interaction.options.getString("question") ?? '設定なし';
+        const question = interaction.options.getString("question") ?? '今日の運勢';
     
         // ユーザーの最後のおみくじ引き日を取得
-        const last_ft_date = USER_LAST_FT_DATE_LIST.get(user_id);
+        // const last_ft_date = USER_LAST_FT_DATE_LIST.get(user_id);
     
-        if (last_ft_date) {
-            // 現在の日付を取得
-            const current_date = new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }));
-            current_date.setHours(0, 0, 0, 0); // 時刻を0時0分0秒に設定
+        // if (last_ft_date) {
+        //     // 現在の日付を取得
+        //     const current_date = new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }));
+        //     current_date.setHours(0, 0, 0, 0); // 時刻を0時0分0秒に設定
     
-            // 最後の占い日と現在の日付を比較
-            if (last_ft_date.getDay() >= current_date.getDay()) {
-                await interaction.reply("同じ占いは1日に1回しか出来ません😌");
-                return;
-            }
-        }
+        //     // 最後の占い日と現在の日付を比較
+        //     if (last_ft_date.getDay() >= current_date.getDay()) {
+        //         await interaction.reply("同じ占いは1日に1回しか出来ません😌");
+        //         return;
+        //     }
+        // }
     
         // 占いの実行
         const card = ft_shuffle(0, TAROT.length-1)
@@ -62,12 +61,12 @@ module.exports = {
             .setName(TAROT[card[1]].イメージ)
             .setFile(`img/${TAROT[card[1]].イメージ}`)
 
-        await interaction.reply({ content : `
-            [ツーオラクル]\n質問：${question}\n${user_name}の今日の運勢🔮は...\n[結果]${TAROT[card[0]].カード名}：${TAROT[card[0]].意味}\n[対策]${TAROT[card[1]].カード名}：${TAROT[card[1]].意味}
-        `, files: [image1, image2] }
-        );
+        await interaction.reply({ 
+            content : `# [ツーオラクル]\n質問：${question}\n${user_name}の占い結果🔮は...\n\n## [結果]\n**${TAROT[card[0]].カード名}**： \n➡︎「${TAROT[card[0]].意味}」\n\n## [対策]\n**${TAROT[card[1]].カード名}**： \n➡︎「${TAROT[card[1]].意味}」`,
+            files: [image1, image2]
+        });
     
         // ユーザーの最後の占い日を更新
-        USER_LAST_FT_DATE_LIST.set(user_id, new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })).setHours(0, 0, 0, 0));
+        // USER_LAST_FT_DATE_LIST.set(user_id, new Date(new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })).setHours(0, 0, 0, 0));
     },
 };
