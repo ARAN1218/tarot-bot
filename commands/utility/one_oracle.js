@@ -38,7 +38,7 @@ module.exports = {
         const user_id = interaction.user.id;
         const user_name = interaction.member.displayName;
         const question = interaction.options.getString("question") ?? '今日の運勢';
-        const model = GEMINI.getGenerativeModel({ model: "gemini-pro" });
+        const model = GEMINI.getGenerativeModel({ model: "gemini-1.5-pro" });
     
         // ユーザーの最後のおみくじ引き日を取得
         const last_ft_date = USER_LAST_FT_DATE_LIST.get(user_id);
