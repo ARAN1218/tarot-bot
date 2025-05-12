@@ -38,7 +38,7 @@ module.exports = {
         const user_id = interaction.user.id;
         const user_name = interaction.member.displayName;
         const question = interaction.options.getString("question") ?? '運勢の流れ(過去/現在/近未来)';
-        const model = GEMINI.getGenerativeModel({ model: "gemini-1.5-pro" });
+        const model = GEMINI.getGenerativeModel({ model: "gemini-1.5-flash" });
     
         // ユーザーの最後のおみくじ引き日を取得
         const last_ft_date = USER_LAST_FT_DATE_LIST.get(user_id);
@@ -65,6 +65,7 @@ module.exports = {
             content : `# [スリーカード]\n質問：${question}\n${user_name}の占い結果🔮は...\n\n`
         });
         await interaction.deferReply({ content : "占い中🔮..." });
+        setTimeout(() => console.log(""), 3000); // 占い感を出すために処理を遅延
     
         // 占いの実行
         const card = ft_shuffle(0, TAROT.length)
